@@ -1,7 +1,7 @@
 // CONEXIÓN CON LA BASE DE DATOS
 // Importo librerías de npm y del archivo secrets (datos de la bbdd)
-const mysqul = require('mysql');
-const secreta = require('../config/secrets');
+const mysql = require('mysql');
+const secrets = require('../config/secrets');
 
 // WRAPPER --> PARA PODER TRABAJAR CON PROMESAS CON mysql
 class dataBase {
@@ -20,19 +20,20 @@ class dataBase {
             });
         });
     };
-};
 
-// CIERRO CONEXIONES
-close() {
-    return new Promise((resolve, reject) => {
-        this.connection.end(error) => {
-            if (error) {
-                return reject(error);
-            } else {
-                resolve();
-            };
-        };
-    });
+
+    // CIERRO CONEXIONES
+    close() {
+        return new Promise((resolve, reject) => {
+            this.connection.end((error) => {
+                if (error) {
+                    return reject(error);
+                } else {
+                    resolve();
+                };
+            });
+        });
+    };
 };
 
 // Importo configuración base de datos.
