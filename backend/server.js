@@ -7,6 +7,7 @@ const { check } = require('express-validator'); // valido el body, por ejemplo, 
 
 // Importación Controllers
 const userController = require('./controllers/user.controller');
+const glucoseController = require('./controllers/glucose.controller');
 
 
 // Server
@@ -16,7 +17,7 @@ const server = express();
 server.use(helmet()); // Protejo mi servidor
 server.use(bodyParser.json()); // Parseo el body en formato json (objeto)
 
-// Endpoints
+// --------------- ENDPOINTS USERS --------------------
 // -- Users -- CRRUD
 
 // Crear nuevo usuario ( CREATE )
@@ -36,7 +37,6 @@ server.get("/user", userController.getAllUsers);
 // Ver usuario por id ( READ by Id )
 server.get('/user/:id', userController.getSingleUser);
 
-
 // Modificar usuario por id ( UPDATE )
 server.put('/updateUser', [
     check('username'),
@@ -50,6 +50,16 @@ server.put('/updateUser', [
 
 // Eliminar usuario por id ( DELETE )
 server.delete('/user/:id', userController.deleteUserById);
+
+// --------------- ENDPOINTS CONTROLS --------------------
+
+// Ver todos los usuarios ( READ )
+server.get('/controls', glucoseController.getAllControls);
+
+
+
+
+
 
 
 
