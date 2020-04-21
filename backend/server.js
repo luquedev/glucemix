@@ -17,20 +17,36 @@ server.use(helmet()); // Protejo mi servidor
 server.use(bodyParser.json()); // Parseo el body en formato json (objeto)
 
 // Endpoints
-// -- Users --
-// Ver todos los usuarios
-server.get("/user", userController.getAllUsers);
-// Crear nuevo usuario
-server.post('user/new', [
-    check('username').isString().escape().trim(),
-    check('password').isString().trim(),
-    check('email').isString().trim(),
-    check('name').isString().escape().trim(),
-    check('lastname').isString().escape().trim(),
-    check('phone').isString().trim(),
-    check('address').isString().trim()
+// -- Users -- CRRUD
+
+// Crear nuevo usuario ( CREATE )
+server.post('/newUser', [
+    check('username'),
+    check('password'),
+    check('email'),
+    check('name'),
+    check('lastname'),
+    check('phone'),
+    check('address')
 ], userController.newUser);
 
+// Ver todos los usuarios ( READ )
+server.get("/user", userController.getAllUsers);
+
+// Ver usuario por id ( READ by Id )
+server.get('/user/:id', userController.getSingleUser);
+
+
+// Modificar usuario por id ( UPDATE )
+server.post('/updateUser', [
+    check('username'),
+    check('email'),
+    check('name'),
+    check('lastname'),
+    check('phone'),
+    check('address'),
+    check('id')
+], userController.updateSingleUser)
 
 
 
