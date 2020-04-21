@@ -1,6 +1,29 @@
 const glucoseModel = require('./../models/glucose.model');
 const { validationResult } = require('express-validator'); // para poder validar el body
 
+
+// Create new Control
+exports.newControl = async(req, res) => {
+    const errors = validationResult(req);
+    if (errors.isEmpty) {
+        const date = req.body.date;
+        const time = req.body.time;
+        const mgdl = req.body.mgdl;
+        const fk_user = req.body.fk_user;
+        try {
+            const result = await glucoseModel.newControl(date, time, mgdl, fk_user);
+            res.send({ "Mensaje": "Control creado correctamente" });
+        } catch (error) {
+            res.send("Error en creación de nuevo usuario" + error);
+        }
+    } else {
+        res.status(400).send({ "error": "El body está mal formado", "explicacion": errors });
+    };
+};
+
+
+
+// Read all controls
 exports.getAllControls = async(req, res) => {
     try {
         const data = await glucoseModel.getAllControls();

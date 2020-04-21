@@ -53,12 +53,26 @@ server.delete('/user/:id', userController.deleteUserById);
 
 // --------------- ENDPOINTS CONTROLS --------------------
 
+// Crear nuevo control
+
+server.post('/newglucose', [
+    check('date'),
+    check('time'),
+    check('mgdl').isNumeric,
+    check('fk_user'),
+], glucoseController.newControl);
+
+
+
+
 // Ver todos los controles ( READ )
 server.get('/controls', glucoseController.getAllControls);
 
 // Ver todos los controles por Usuario
 
 server.get('/controls/:id', glucoseController.getControlsByUserId);
+
+
 
 
 

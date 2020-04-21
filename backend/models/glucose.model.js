@@ -3,6 +3,19 @@ const connection = require('./db.model');
 
 // CRRUD -> Create, Read, Read by Id, Update, Delete
 
+// Create -> Introducir nuevo control
+exports.newControl = (date, time, mgdl, fk_user) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const result = connection.query(`INSERT INTO bloodglucose (date, time, mgdl, fk_user) VALUES (?, ?, ?, ?);`, [date, time, mgdl, fk_user]);
+            resolve(result);
+        } catch {
+            reject('error en la creación del control' + error);
+        }
+    });
+};
+
+
 // Read -> Leer todos los controles de la bbdd -> creo exportando
 exports.getAllControls = () => {
     // me devolverá una promesa
