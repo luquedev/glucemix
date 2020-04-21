@@ -53,10 +53,12 @@ server.delete('/user/:id', userController.deleteUserById);
 
 // --------------- ENDPOINTS CONTROLS --------------------
 
-// Ver todos los usuarios ( READ )
+// Ver todos los controles ( READ )
 server.get('/controls', glucoseController.getAllControls);
 
+// Ver todos los controles por Usuario
 
+server.get('/controls/:id', glucoseController.getControlsByUserId);
 
 
 
