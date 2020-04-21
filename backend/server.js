@@ -38,7 +38,7 @@ server.get('/user/:id', userController.getSingleUser);
 
 
 // Modificar usuario por id ( UPDATE )
-server.post('/updateUser', [
+server.put('/updateUser', [
     check('username'),
     check('email'),
     check('name'),
@@ -46,8 +46,10 @@ server.post('/updateUser', [
     check('phone'),
     check('address'),
     check('id')
-], userController.updateSingleUser)
+], userController.updateSingleUser);
 
+// Eliminar usuario por id ( DELETE )
+server.delete('/user/:id', userController.deleteUserById);
 
 
 

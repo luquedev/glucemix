@@ -53,3 +53,16 @@ exports.updateUser = (id, newUsername, newEmail, newName, newLastname, newPhone,
         }
     });
 }
+
+// Delete user (por id) -> exporto
+exports.deleteUser = (id) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const sql = `DELETE FROM users WHERE id = ${id}`;
+            const result = await connection.query(sql);
+            resolve(result);
+        } catch (error) {
+            reject(error)
+        }
+    })
+}

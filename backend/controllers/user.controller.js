@@ -86,3 +86,22 @@ exports.updateSingleUser = async(req, res) => {
         res.status(400).send({ "error": "el body está mal formado", "explicación": errors });
     }
 }
+
+// Delete user by id -> exporto
+exports.deleteUserById = async(req, res) => {
+    //Cojo del path params el Id que quiero eliminar
+    const id = req.params.id;
+    //Pido al modelo que elimine ese usuario
+    try {
+        const result = await userModel.deleteUser(id);
+        // Compruebo que el id exista
+        if (result.affectedRows > 0) {
+            // Envío confirmación porque existe
+            res.send({ "mensaje": `Ok, usuario con el id ${id} eliminado` });
+        } else {
+            res.status(404).send({ "error": "El id introducido no existe." })
+        }
+    } catch (error) {
+        res.send(error);
+    }
+}
