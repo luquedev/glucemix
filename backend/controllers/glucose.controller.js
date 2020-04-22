@@ -9,9 +9,8 @@ exports.newControl = async(req, res) => {
         const date = req.body.date;
         const time = req.body.time;
         const mgdl = req.body.mgdl;
-        const fk_user = req.body.fk_user;
         try {
-            const result = await glucoseModel.newControl(date, time, mgdl, fk_user);
+            const result = await glucoseModel.newControl(date, time, mgdl);
             res.send({ "Mensaje": "Control creado correctamente" });
         } catch (error) {
             res.send("Error en creación de nuevo usuario" + error);
@@ -20,8 +19,6 @@ exports.newControl = async(req, res) => {
         res.status(400).send({ "error": "El body está mal formado", "explicacion": errors });
     };
 };
-
-
 
 // Read all controls
 exports.getAllControls = async(req, res) => {
@@ -47,5 +44,28 @@ exports.getControlsByUserId = async(req, res) => {
         }
     } catch (error) {
         res.send(error);
+    }
+}
+
+// Update control by id --> lo exporto
+exports.updateControl = async(req, res) => {
+    const errors = validationResult(req); // validaciones
+    // compruebo que no haya errores
+    if (errors.isEmpty()) {
+        const date = req.body.date;
+        const time = req.body.time;
+        const mgdl = req.body.mgdl;
+        const id = req.body.id;
+        // llamamos al modelo para hacer las comprobaciones
+        try {
+            const result = await glucoseModel.updateControlById(id, date, time, mgdl);
+            if (result.affectedRows > 0) {
+                res.send({ "mensaje": "Control modificado con éxito" });
+            } else {
+                res.status(404).send({ "error": "El id no existe." });
+            }
+        } catch (error) {
+            res.send(error);
+        }
     }
 }

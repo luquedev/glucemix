@@ -59,11 +59,8 @@ server.post('/newglucose', [
     check('date'),
     check('time'),
     check('mgdl').isNumeric(),
-    check('fk_user'),
+    check('fk_user')
 ], glucoseController.newControl);
-
-
-
 
 // Ver todos los controles ( READ )
 server.get('/controls', glucoseController.getAllControls);
@@ -72,7 +69,13 @@ server.get('/controls', glucoseController.getAllControls);
 
 server.get('/controls/:id', glucoseController.getControlsByUserId);
 
-
+// Update control
+server.put('/updateControl/', [
+    check('date'),
+    check('time'),
+    check('mgdl').isNumeric(),
+    check('id')
+], glucoseController.updateControl);
 
 
 

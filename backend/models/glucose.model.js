@@ -15,7 +15,6 @@ exports.newControl = (date, time, mgdl, fk_user) => {
     });
 };
 
-
 // Read -> Leer todos los controles de la bbdd -> creo exportando
 exports.getAllControls = () => {
     // me devolverá una promesa
@@ -29,12 +28,25 @@ exports.getAllControls = () => {
     });
 }
 
-// Read controls by id -> mostrar todos los controles -> creo exportando
+// Read controls by user id -> mostrar todos los controles -> creo exportando
 exports.getControlsByUser = (userId) => {
     return new Promise(async(resolve, reject) => {
         try {
             const data = await connection.query(`SELECT bloodglucose.mgdl, bloodglucose.fk_user, users.username FROM glucemix.bloodglucose, glucemix.users WHERE glucemix.bloodglucose.fk_user = glucemix.users.id AND glucemix.bloodglucose.fk_user = ${userId}`);
             resolve(data);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+// Update control by user and control -> modificar un control de un usuario -> creo exportando
+exports.updateControlById = (id, newDate, newTime, newMgdl) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const sql = `UPDATE bloodglucose SET date ="${newDate}", time = "${newTime}", mgdl = "${newMgdl}" WHERE bloodglucose.id = ${id}`;
+            const result = await connection.query(sql);
+            resolve(result);
         } catch (error) {
             reject(error);
         }
