@@ -58,7 +58,7 @@ server.delete('/user/:id', userController.deleteUserById);
 server.post('/newglucose', [
     check('date'),
     check('time'),
-    check('mgdl').isNumeric,
+    check('mgdl').isNumeric(),
     check('fk_user'),
 ], glucoseController.newControl);
 
