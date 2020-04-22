@@ -40,7 +40,7 @@ exports.getControlsByUser = (userId) => {
     });
 }
 
-// Update control by user and control -> modificar un control de un usuario -> creo exportando
+// Update control by Id -> modificar un control de un usuario -> creo exportando
 exports.updateControlById = (id, newDate, newTime, newMgdl) => {
     return new Promise(async(resolve, reject) => {
         try {
@@ -51,4 +51,17 @@ exports.updateControlById = (id, newDate, newTime, newMgdl) => {
             reject(error);
         }
     });
+}
+
+// Delete control by Id -> creo exportando
+exports.deleteControlById = (id) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const sql = `DELETE FROM bloodglucose WHERE id = ${id}`;
+            const result = await connection.query(sql);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    })
 }

@@ -69,3 +69,20 @@ exports.updateControl = async(req, res) => {
         }
     }
 }
+
+// Delete control by Id -> lo exporto
+exports.deleteControl = async(req, res) => {
+    const id = req.params.id; // cojo del path params el id que quiero eliminar
+    // pido al modelo que elimine ese control
+    try {
+        const result = await glucoseModel.deleteControlById(id);
+        if (result.affectedRows > 0) {
+            res.send({ "mensaje": `Control con el id ${id} eliminado` });
+        } else {
+            res.status(404).send({ "error": "el id introducido no existe" });
+        }
+
+    } catch (error) {
+        res.send(error);
+    }
+}

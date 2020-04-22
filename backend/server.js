@@ -49,7 +49,7 @@ server.put('/updateUser', [
 ], userController.updateSingleUser);
 
 // Eliminar usuario por id ( DELETE )
-server.delete('/user/:id', userController.deleteUserById);
+server.delete('/deleteUser/:id', userController.deleteUserById);
 
 // --------------- ENDPOINTS CONTROLS --------------------
 
@@ -76,6 +76,9 @@ server.put('/updateControl/', [
     check('mgdl').isNumeric(),
     check('id')
 ], glucoseController.updateControl);
+
+// Delete control
+server.delete('/deleteControl/:id', glucoseController.deleteControl);
 
 
 
