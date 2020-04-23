@@ -16,9 +16,10 @@ module.exports = {
     "user": "lluisrl",
     "password": "proyectoneoland",
     "database": "glucemix",
-    // "port": process.env.DB_PORT,
-    // "connectTimeout": 50000,
-    // "acquireTimeout": 50000,
-    // "jwt_clave": process.env.SECRET_KEY,
-    // "contact": process.env.EMAIL
+    "jwt_clave": "CLAVE_SUPERSECRETA"
+        // "port": process.env.DB_PORT,
+        // "connectTimeout": 50000,
+        // "acquireTimeout": 50000,
+        // "jwt_clave": process.env.SECRET_KEY,
+        // "contact": process.env.EMAIL
 };

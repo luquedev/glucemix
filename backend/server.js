@@ -3,7 +3,11 @@
 const express = require('express'); // Para poder construir mi servidor
 const helmet = require('helmet'); // seguridad del servidor
 const bodyParser = require('body-parser'); // parsear el body
+// Importo el check de express-validator, poniéndolo entre llaves
 const { check } = require('express-validator'); // valido el body, por ejemplo, en la creación del usuario.
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
 
 // Importación Controllers
 const userController = require('./controllers/user.controller');
@@ -16,6 +20,8 @@ const server = express();
 // Middlewares
 server.use(helmet()); // Protejo mi servidor
 server.use(bodyParser.json()); // Parseo el body en formato json (objeto)
+server.use(cookieParser());
+server.use(cors());
 
 // --------------- ENDPOINTS USERS --------------------
 // -- Users -- CRRUD
@@ -37,6 +43,9 @@ server.get("/user", userController.getAllUsers);
 // Ver usuario por id ( READ by Id )
 server.get('/user/:id', userController.getSingleUser);
 
+// Ver usuario por username ( READ by username )
+server.get('/userByName/:userName', userController.getSingleUserByuserName);
+
 // Modificar usuario por id ( UPDATE )
 server.put('/updateUser', [
     check('username'),
@@ -50,6 +59,15 @@ server.put('/updateUser', [
 
 // Eliminar usuario por id ( DELETE )
 server.delete('/deleteUser/:id', userController.deleteUserById);
+
+// Login user -> Compruebo usuario y contraseña.
+server.post('/userLogin', [
+    check('username').isString(),
+    check('email').isEmail(),
+    check('password').isString(),
+], userController.userLogin);
+
+
 
 // --------------- ENDPOINTS CONTROLS --------------------
 
