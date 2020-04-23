@@ -82,9 +82,9 @@ exports.deleteUser = (id) => {
 }
 
 // Login user
-exports.userLoginModel = (username, email) => {
+exports.userLoginModel = (username) => {
     return new Promise((resolve, reject) => {
-        connection.query(`SELECT * FROM users WHERE username = ? AND email = ?;`, [username, email])
+        connection.query(`SELECT * FROM users WHERE username = ?;`, [username])
             .then(result => resolve(result))
             .catch(error => reject("Error en usuario o contraseña" + error));
     });

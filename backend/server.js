@@ -64,7 +64,6 @@ server.delete('/deleteUser/:id', userController.deleteUserById);
 // Login user -> Compruebo usuario y contraseña.
 server.post('/userLogin', [
     check('username').isString(),
-    check('email').isEmail(),
     check('password').isString()
 ], userController.userLogin);
 

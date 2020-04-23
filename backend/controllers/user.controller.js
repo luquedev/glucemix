@@ -127,7 +127,6 @@ exports.deleteUserById = async(req, res) => {
 // LOGIN USUARIO -> creo exportando
 exports.userLogin = async(req, res) => {
     const userName = req.body.username;
-    const email = req.body.email;
     const password = req.body.password;
     const errors = validationResult(req);
     console.log(errors); // para que me muestre el error por consola
@@ -135,7 +134,7 @@ exports.userLogin = async(req, res) => {
         if (!errors.isEmpty()) {
             return res.status(422).send.json({ "error": "El body está mal formado", "explicación": errors });
         } else {
-            const user = await userModel.userLoginModel(userName, email);
+            const user = await userModel.userLoginModel(userName);
             if (user.length > 0) {
                 const coincide = bcrypt.compareSync(password, user[0].password);
                 console.log(coincide);
@@ -161,6 +160,7 @@ exports.userLogin = async(req, res) => {
     }
 };
 
+/*
 // RECUPERACIÓN DE CONTRASEÑA -> HAY QUE COMPROBAR QUE USUARIO Y MAIL COINCIDEN
 exports.userPasswordRecover = async(req, res) => {
     const errors = validationResult(errors);
@@ -190,3 +190,5 @@ exports.userPasswordRecover = async(req, res) => {
         res.send({ "mensaje": "Introduce usuario o correo electrónico." })
     }
 }
+
+*/
