@@ -126,10 +126,10 @@ exports.deleteUserById = async(req, res) => {
 
 // LOGIN USUARIO -> creo exportando
 exports.userLogin = async(req, res) => {
-    const errors = validationResult(req);
     const userName = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
+    const errors = validationResult(req);
     console.log(errors); // para que me muestre el error por consola
     try {
         if (!errors.isEmpty()) {
@@ -145,7 +145,7 @@ exports.userLogin = async(req, res) => {
                             if (error) {
                                 res.send("Error token " + error);
                             } else {
-                                res.cookie("cookie_glucemix", token);
+                                res.cookie("glucemix_cookie", token);
                                 res.send({ "mensaje": "Contraseña correcta, autorización ok" });
                             };
                         });
@@ -159,7 +159,7 @@ exports.userLogin = async(req, res) => {
     } catch (error) {
         res.send(error);
     }
-}
+};
 
 // RECUPERACIÓN DE CONTRASEÑA -> HAY QUE COMPROBAR QUE USUARIO Y MAIL COINCIDEN
 exports.userPasswordRecover = async(req, res) => {

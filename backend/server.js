@@ -19,6 +19,7 @@ const server = express();
 
 // Middlewares
 server.use(helmet()); // Protejo mi servidor
+server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json()); // Parseo el body en formato json (objeto)
 server.use(cookieParser());
 server.use(cors());
@@ -64,7 +65,7 @@ server.delete('/deleteUser/:id', userController.deleteUserById);
 server.post('/userLogin', [
     check('username').isString(),
     check('email').isEmail(),
-    check('password').isString(),
+    check('password').isString()
 ], userController.userLogin);
 
 
