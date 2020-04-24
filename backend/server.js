@@ -50,6 +50,7 @@ server.get('/userByName/:userName', userController.getSingleUserByuserName);
 // Modificar usuario por id ( UPDATE )
 server.put('/updateUser', [
     check('username'),
+    check('password'),
     check('email'),
     check('name'),
     check('lastname'),

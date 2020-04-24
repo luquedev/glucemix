@@ -81,8 +81,10 @@ exports.getSingleUserByuserName = async(req, res) => {
 // Update user by id -> exporto
 exports.updateSingleUser = async(req, res) => {
     const errors = validationResult(req) // validaciones
+    const hash = await bcrypt.hash(req.body.password, 14);
     if (errors.isEmpty()) {
         const username = req.body.username;
+        const password = hash;
         const email = req.body.email;
         const name = req.body.name;
         const lastname = req.body.lastname;
@@ -91,7 +93,7 @@ exports.updateSingleUser = async(req, res) => {
         const id = req.body.id;
         //llamamos al modelo
         try {
-            const result = await userModel.updateUser(id, username, email, name, lastname, phone, address);
+            const result = await userModel.updateUser(id, username, password, email, name, lastname, phone, address);
             if (result.affectedRows > 0) {
                 res.send({ "mensaje": "Usuario modificado con éxito" });
             } else {
