@@ -12,7 +12,7 @@ export class ControlsService {
   constructor(private http: HttpClient
   ) { this.baseUrl = "http://localhost:3000" }
 
-  getControlsByUserName(): Promise<Control[]> {
-    return this.http.get<Control[]>(`${this.baseUrl}/controlsbyusername/username`).toPromise();
+  getControlsByUserName(username): Promise<Control[]> {
+    return this.http.get<Control[]>(`${this.baseUrl}/controlsbyusername/${username}`).toPromise();
   }
 }
