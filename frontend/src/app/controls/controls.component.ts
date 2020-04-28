@@ -9,11 +9,11 @@ import { ControlsService } from '../services/controls.service';
 export class ControlsComponent implements OnInit {
 
   constructor(
-    private controlsservice: ControlsService
+    private controlsService: ControlsService
   ) { }
 
   ngOnInit() {
-    this.controlsservice.getControlsByUserName().then(result => console.log(result))
+    this.controlsService.getControlsByUserName().then(result => console.log(result))
       .catch(err => console.log(err))
   }
 }
