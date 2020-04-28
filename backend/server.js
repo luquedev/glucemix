@@ -84,9 +84,13 @@ server.post('/newglucose', [
 // Ver todos los controles ( READ )
 server.get('/controls', glucoseController.getAllControls);
 
-// Ver todos los controles por Usuario
+// Ver todos los controles por Id Usuario
 
 server.get('/controls/:id', glucoseController.getControlsByUserId);
+
+// Ver todos los controles por username
+
+server.get('/controlsbyusername/:username', glucoseController.getControlsByUserName);
 
 // Update control
 server.put('/updateControl/', [

@@ -47,6 +47,23 @@ exports.getControlsByUserId = async(req, res) => {
     }
 }
 
+// Read controls by Username -> lo exporto
+exports.getControlsByUserName = async(req, res) => {
+    try {
+        //hay que sacar del path el Id del usuario
+        const userName = req.params.username;
+        const controls = await glucoseModel.getControlsByUserName(userName);
+        // Lógica para comprobar que el usuario existe
+        if (controls.length === 0) {
+            res.status(404).send({ "mensaje": "El nombre de usuario no existe o no tiene controles registrados." });
+        } else {
+            res.send(controls);
+        }
+    } catch (error) {
+        res.send(error);
+    }
+}
+
 // Update control by id --> lo exporto
 exports.updateControl = async(req, res) => {
     const errors = validationResult(req); // validaciones

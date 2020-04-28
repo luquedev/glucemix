@@ -12,7 +12,7 @@
 */
 
 module.exports = {
-    "host": "mysql-5603.dinaserver.com",
+    "host": "hl766.dinaserver.com",
     "user": "lluisrl",
     "password": "proyectoneoland",
     "database": "glucemix",
