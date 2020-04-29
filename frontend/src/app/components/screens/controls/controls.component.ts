@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from './../../../services/controls.service';
-// import { Control } from '../../../models/controls.model';
 import { ActivatedRoute } from '@angular/router';
 import { Control } from 'src/app/models/controls.model';
 
@@ -12,6 +11,8 @@ import { Control } from 'src/app/models/controls.model';
 })
 export class ControlsComponent implements OnInit {
 
+  arrControl: Control[];
+
   userNameParam: string;
   constructor(
 
@@ -19,11 +20,20 @@ export class ControlsComponent implements OnInit {
     private controlsService: ControlsService
 
   ) {
+
     this.userNameParam = this.activeRoute.snapshot.params.username;
   }
 
   ngOnInit() {
-    this.controlsService.getControlsByUserName(this.userNameParam).then(result => console.log(result))
+
+    this.controlsService.getControlsByUserName(this.userNameParam).then((pControl) => {
+      this.arrControl = pControl
+      console.log(pControl)
+    })
       .catch(err => console.log(err))
   }
 }
+
+/*
+this.controlsService.getControlsByUserName(this.userNameParam).then(result => console.log(result))
+  .catch(err => console.log(err)) */
