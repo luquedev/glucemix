@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
-import { ControlsComponent } from './controls/controls.component';
+import { UsersComponent } from './components/screens/users/users.component';
+import { ControlsComponent } from './components/screens/controls/controls.component';
 
 
 

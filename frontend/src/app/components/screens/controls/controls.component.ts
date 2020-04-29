@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlsService } from '../services/controls.service';
-import { Control } from '../models/controls.model';
+import { ControlsService } from './../../../services/controls.service';
+// import { Control } from '../../../models/controls.model';
 import { ActivatedRoute } from '@angular/router';
+import { Control } from 'src/app/models/controls.model';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./controls.component.css']
 })
 export class ControlsComponent implements OnInit {
+
   userNameParam: string;
   constructor(
 
