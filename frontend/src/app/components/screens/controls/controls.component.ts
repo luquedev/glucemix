@@ -15,14 +15,7 @@ export class ControlsComponent implements OnInit {
 
   arrControl: Control[];
 
-  formulario: FormGroup;
-
   userNameParam: string;
-
-  posArray: number;
-
-
-
 
 
   constructor(
@@ -33,7 +26,6 @@ export class ControlsComponent implements OnInit {
 
   ) {
 
-    this.posArray = 0;
     this.userNameParam = this.activeRoute.snapshot.params.username;
 
   }
@@ -46,36 +38,13 @@ export class ControlsComponent implements OnInit {
     } catch (error) {
       console.log(error)
     }
-    this.formulario = new FormGroup(
-      {
-        id: new FormControl(''),
-        newDate: new FormControl(''),
-        newTime: new FormControl(''),
-        newMgdl: new FormControl('')
-      });
-
   }
 
   eliminar(pId) {
     console.log(pId);
   }
 
-  modificar(pIndex) {
-    console.log(this.arrControl[pIndex]);
-    /* this.formulario.value.id = pIndex; */
-    this.controlsService.updateControlById(this.formulario.value).then((result) => console.log(result))
-      .catch((error) => console.log(error));
-
-
-    console.log(this.formulario.value);
+  editar(pId) {
+    console.log(pId);
   }
-
-  onSubmit() {
-
-  }
-
 }
-
-/*
-this.controlsService.getControlsByUserName(this.userNameParam).then(result => console.log(result))
-  .catch(err => console.log(err)) */
