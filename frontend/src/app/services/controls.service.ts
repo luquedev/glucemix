@@ -15,4 +15,9 @@ export class ControlsService {
   getControlsByUserName(username): Promise<Control[]> {
     return this.http.get<Control[]>(`${this.baseUrl}/controlsbyusername/${username}`).toPromise();
   }
+
+  updateControlById(formValue): Promise<Control[]> {
+    return this.http.put<Control[]>(`${this.baseUrl}/updateControl`, formValue).toPromise();
+  }
+
 }

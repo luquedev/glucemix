@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './components/screens/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlsComponent } from './components/screens/controls/controls.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { ControlsComponent } from './components/screens/controls/controls.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

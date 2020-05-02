@@ -93,11 +93,11 @@ server.get('/controls/:id', glucoseController.getControlsByUserId);
 server.get('/controlsbyusername/:username', glucoseController.getControlsByUserName);
 
 // Update control
-server.put('/updateControl/', [
+server.put('/updateControl/:id', [
     check('date'),
     check('time'),
-    check('mgdl').isNumeric(),
-    check('id')
+    check('mgdl').isNumeric()
+    // check('id')
 ], glucoseController.updateControl);
 
 // Delete control
