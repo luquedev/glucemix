@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from './../../../services/controls.service';
 import { ActivatedRoute } from '@angular/router';
-import { Control } from 'src/app/models/controls.model';
+import { Controls } from 'src/app/models/controls.model';
 import { FormGroup, FormControl } from '@angular/forms';
 
 
@@ -13,20 +13,25 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ControlsComponent implements OnInit {
 
-  arrControl: Control[];
+  arrControl: Controls[];
+
+  formulario: FormGroup;
 
   userNameParam: string;
+
+  idRecogido: number;
 
 
   constructor(
 
-    private activeRoute: ActivatedRoute,
-    private controlsService: ControlsService,
+    private activatedRoute: ActivatedRoute,
+    private controlsService: ControlsService
 
 
   ) {
 
-    this.userNameParam = this.activeRoute.snapshot.params.username;
+    this.idRecogido = 0;
+    this.userNameParam = this.activatedRoute.snapshot.params.username;
 
   }
 
@@ -34,10 +39,23 @@ export class ControlsComponent implements OnInit {
 
     try {
       this.arrControl = await this.controlsService.getControlsByUserName(this.userNameParam)
-      console.log(this.arrControl);
+      // console.log(this.arrControl);
     } catch (error) {
       console.log(error)
     }
+
+    this.formulario = new FormGroup({
+      id: new FormControl(''),
+      date: new FormControl(''),
+      time: new FormControl(''),
+      mgdl: new FormControl('')
+    });
+
+    this.controlsService.getControlsByUserName(this.userNameParam).then((pControl) => {
+      this.arrControl = pControl;
+      console.log(pControl)
+    })
+      .catch(err => console.log(err));
   }
 
   eliminar(pId) {
@@ -46,5 +64,16 @@ export class ControlsComponent implements OnInit {
 
   editar(pId) {
     console.log(pId);
+    this.idRecogido = pId;
+
+  }
+
+
+  onSubmit() {
+
+    this.formulario.value.id = this.idRecogido;
+    console.log(this.formulario.value);
+    this.controlsService.actualizarControlById(this.formulario.value);
   }
 }
+

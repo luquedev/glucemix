@@ -1,4 +1,4 @@
-export class Control {
+export class Controls {
     id: number;
     date: string;
     time: string;

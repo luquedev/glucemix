@@ -7,13 +7,15 @@ import { UsersComponent } from './components/screens/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlsComponent } from './components/screens/controls/controls.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdatecontrolComponent } from './components/screens/updatecontrol/updatecontrol.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    ControlsComponent
+    ControlsComponent,
+    UpdatecontrolComponent
   ],
   imports: [
     BrowserModule,

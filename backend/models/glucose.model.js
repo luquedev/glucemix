@@ -45,7 +45,6 @@ exports.getControlsByUserName = (username) => {
     return new Promise(async(resolve, reject) => {
         try {
             const data = await connection.query(`SELECT bloodglucose.mgdl, bloodglucose.fk_user, users.username, bloodglucose.date, bloodglucose.time, bloodglucose.id FROM glucemix.bloodglucose, glucemix.users WHERE glucemix.bloodglucose.fk_user = glucemix.users.id AND glucemix.users.username = "${username}"`);
-            console.log(data);
             resolve(data);
         } catch (error) {
             reject(error);

@@ -72,7 +72,7 @@ exports.updateControl = async(req, res) => {
         const date = req.body.date;
         const time = req.body.time;
         const mgdl = req.body.mgdl;
-        const id = req.params.id;
+        const id = req.body.id;
         // llamamos al modelo para hacer las comprobaciones
         try {
             const result = await glucoseModel.updateControlById(id, date, time, mgdl);

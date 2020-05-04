@@ -8,7 +8,9 @@
                 </div>
             </div>
             <br/>
+
             <table class="table">
+
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
@@ -30,7 +32,18 @@
             </table>
         </div>
     </div>
+</div>
 
+<div class="formulariocontrol">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+        <div class="form-group"><label for="fecha">Fecha</label><input type="text" class="form-control" formControlName="newDate"></div>
+
+        <div class="form-group"><label for="hora">Hora</label><input type="text" class="form-control" formControlName="newTime"></div>
+        <div class="form-group"><label for="control">Control</label><input type="text" class="form-control" formControlName="newMgdl"></div>
+        <div class="form-group"><button type="submit" class="btn btn-primary">Editar</button>
+        </div>
+    </form>
 </div>
 
 
@@ -47,42 +60,18 @@
 
 
 
+<!-- TABLA OK - MOSTRAR REGISTROS SOLO -
+                    <tr *ngFor="let control of arrControl">
+                        <td scope="row">{{control.date|date: 'dd/MM/yyyy'}}</td>
+                        <td>{{controls.time}}</td>
+                        <td>{{controls.mgdl}}</td>
+                        <td><button type="submit" class="btn btn-primary" (click)="editar(controls.id)">Editar</button></td>
+                        <td><button type="submit" class="btn btn-primary" (click)="eliminar(controls.id)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-
-
-
-
-
-
-
-
-<!-- FORMULARIO EDITABLE -->
-<!-- <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-                        <tr *ngFor="let control of arrControl">
-
-                            <td class="form-group" scope="row"><input type="text" class="form-control" formControlName="newDate">{{control.date|date: 'dd/MM/yyyy'}}</td>
-
-                            <td class="form-group"><input type="text" class="form-control" formControlName="newTime">{{control.time}}</td>
-                            <td class="form-group"><input type="text" class="form-control" formControlName="newMgdl">{{control.mgdl}}</td>
-
-                            <td class="form-group"><button type="submit" class="btn btn-primary" (click)="modificar(control.id)">Modificar</button></td>
-                            <td class="form-group"><button type="submit" class="btn btn-primary" (click)="eliminar(control.id)">Eliminar</button></td>
-                        </tr>
-                    </form> -->
-
-
-
-<!-- formulario resto -->
-<!-- <tr [formGroup]="formulario" (ngSubmit)="onSubmit()" *ngFor="let control of arrControl; let i = index">
-
-
-    <td class="form-group" scope="row"><input style="display: none" type="text" class="form-control" formControlName="id" value="{{control?.id}}">
-
-        <input type="text" class="form-control" formControlName="newDate" value="{{control?.date|date: 'dd/MM/yyyy'}}"></td>
-
-    <td class="form-group"><input type="text" class="form-control" formControlName="newTime" value="{{control?.time}}"></td>
-    <td class="form-group"><input type="text" class="form-control" formControlName="newMgdl" value="{{control?.mgdl}}"></td>
-
-    <td class="form-group"><button type="submit" class="btn btn-primary" (click)="modificar(i)">Modificar</button></td>
-    <td class="form-group"><button type="submit" class="btn btn-primary" (click)="eliminar(i)">Eliminar</button></td>
-</tr> -->
+</div>
+ -->
