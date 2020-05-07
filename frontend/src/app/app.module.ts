@@ -3,26 +3,41 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsersComponent } from './components/screens/users/users.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ControlsComponent } from './components/screens/controls/controls.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpdatecontrolComponent } from './components/screens/updatecontrol/updatecontrol.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './components/home/home.component';
+import { ControlsComponent } from './components/controls/controls.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { ContactComponent } from './components/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NewcontrolComponent } from './components/newcontrol/newcontrol.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
+    HomeComponent,
     ControlsComponent,
-    UpdatecontrolComponent
+    MainNavComponent,
+    ContactComponent,
+    FooterComponent,
+    NewcontrolComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

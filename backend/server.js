@@ -3,6 +3,7 @@
 const express = require('express'); // Para poder construir mi servidor
 const helmet = require('helmet'); // seguridad del servidor
 const bodyParser = require('body-parser'); // parsear el body
+
 // Importo el check de express-validator, poniéndolo entre llaves
 const { check } = require('express-validator'); // valido el body, por ejemplo, en la creación del usuario.
 const cookieParser = require('cookie-parser');
@@ -109,6 +110,7 @@ server.delete('/deleteControl/:id', glucoseController.deleteControl);
 
 
 // Definimos puerto del Server, el que yo lo indique, o el 3000
+require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
 // Servidor preparado para escuchar (listen)
