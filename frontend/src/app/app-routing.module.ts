@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: "home", component: HomeComponent, pathMatch: 'full' },
   { path: "newcontrol", component: NewcontrolComponent },
   { path: "contact", component: ContactComponent },
-  { path: "controls/:id", component: ControlsComponent }
+  { path: "control/:id", component: ControlsComponent },
+  { path: "control", component: ControlsComponent }
 ];
 
 @NgModule({

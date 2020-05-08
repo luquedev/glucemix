@@ -75,7 +75,7 @@ server.post('/userLogin', [
 
 // Crear nuevo control
 
-server.post('/newglucose', [
+server.post('/control', [
     check('date'),
     check('time'),
     check('mgdl').isNumeric(),
@@ -83,18 +83,18 @@ server.post('/newglucose', [
 ], glucoseController.newControl);
 
 // Ver todos los controles ( READ )
-server.get('/controls', glucoseController.getAllControls);
+server.get('/control', glucoseController.getAllControls);
 
 // Ver todos los controles por Id Usuario
 
-server.get('/controls/:id', glucoseController.getControlsByUserId);
+server.get('/control/:id', glucoseController.getControlsByUserId);
 
 // Ver todos los controles por username
 
-server.get('/controlsbyusername/:username', glucoseController.getControlsByUserName);
+server.get('/control/:username', glucoseController.getControlsByUserName);
 
 // Update control
-server.put('/updateControl/', [
+server.put('/control/', [
     check('date'),
     check('time'),
     check('mgdl').isNumeric(),
@@ -102,7 +102,7 @@ server.put('/updateControl/', [
 ], glucoseController.updateControl);
 
 // Delete control
-server.delete('/deleteControl/:id', glucoseController.deleteControl);
+server.delete('/control/:id', glucoseController.deleteControl);
 
 
 

@@ -16,6 +16,8 @@ import { MatListModule } from '@angular/material/list';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewcontrolComponent } from './components/newcontrol/newcontrol.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { NewcontrolComponent } from './components/newcontrol/newcontrol.componen
     MainNavComponent,
     ContactComponent,
     FooterComponent,
-    NewcontrolComponent
+    NewcontrolComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { NewcontrolComponent } from './components/newcontrol/newcontrol.componen
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
