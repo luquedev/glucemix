@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlsService } from '../../services/controls.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -13,8 +14,11 @@ export class ControlsComponent implements OnInit {
   controls: any = [];
   userNameParam: string;
 
+  userId: number;
+
   constructor(private controlsService: ControlsService,
     private activatedRoute: ActivatedRoute) {
+    this.userId = environment.userId;
     this.userNameParam = this.activatedRoute.snapshot.params.username;
   }
 
