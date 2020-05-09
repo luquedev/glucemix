@@ -18,6 +18,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewcontrolComponent } from './components/newcontrol/newcontrol.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { UserComponent } from './components/user/user.component';
     ContactComponent,
     FooterComponent,
     NewcontrolComponent,
-    UserComponent
+    UserComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

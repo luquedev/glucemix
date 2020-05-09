@@ -8,6 +8,7 @@ const bodyParser = require('body-parser'); // parsear el body
 const { check } = require('express-validator'); // valido el body, por ejemplo, en la creación del usuario.
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const midToken = require('./middlewares/jwt.middleware');
 
 
 // Importación Controllers
