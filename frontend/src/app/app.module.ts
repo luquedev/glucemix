@@ -18,10 +18,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewcontrolComponent } from './components/newcontrol/newcontrol.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-
-
+import { RegisterComponent } from './components/userAuth/register/register.component';
+import { ProfileComponent } from './components/userAuth/profile/profile.component';
+import { LoginComponent } from './components/userAuth/login/login.component';
+import { Page404Component } from './components/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,10 @@ import { RegisterComponent } from './components/auth/register/register.component
     FooterComponent,
     NewcontrolComponent,
     UserComponent,
+    RegisterComponent,
+    ProfileComponent,
     LoginComponent,
-    RegisterComponent
+    Page404Component
   ],
   imports: [
     BrowserModule,
