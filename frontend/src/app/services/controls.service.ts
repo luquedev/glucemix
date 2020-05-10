@@ -17,6 +17,10 @@ export class ControlsService {
     return this.http.get(`${this.baseUrl}/control`)
   }
 
+  getControlsByUserId(id): Promise<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/control/${id}`).toPromise();
+  }
+
   saveControl(control: Control) {
     return this.http.post(`${this.baseUrl}/control`, control);
   }

@@ -11,18 +11,29 @@ import { environment } from '../../../environments/environment';
 })
 export class ControlsComponent implements OnInit {
 
+
   controls: any = [];
+  userControlId: any[];
+
   userNameParam: string;
 
   userId: number;
 
+  cookie: string;
+
   constructor(private controlsService: ControlsService,
     private activatedRoute: ActivatedRoute) {
     this.userId = environment.userId;
+    this.userControlId = [];
     this.userNameParam = this.activatedRoute.snapshot.params.username;
   }
 
   ngOnInit(): void {
+
+
+    this.cookie = localStorage.getItem('userId');
+    console.log(this.cookie);
+
     this.controlsService.getControls().subscribe(
       res => {
         console.log(res);
@@ -30,6 +41,9 @@ export class ControlsComponent implements OnInit {
       },
       err => console.log(err)
     );
-  }
 
+    this.controlsService.getControlsByUserId(this.cookie)
+      .then(result => { this.userControlId = result; console.log(result) })
+      .catch(err => console.log(err));
+  }
 }

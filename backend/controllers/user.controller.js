@@ -147,6 +147,7 @@ exports.userLogin = async(req, res) => {
                                 res.send("Error token " + error);
                             } else {
                                 res.cookie("glucemix_cookie", token);
+                                res.cookie("userId", user[0].id);
                                 res.send({ "mensaje": "Contraseña correcta, autorización ok", "glucemix_token": token, "userId": user[0].id });
                             };
                         });
