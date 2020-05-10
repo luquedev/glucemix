@@ -24,12 +24,12 @@ export class ControlsService {
   });
 
   getControls() {
-    let token = this.authService.getToken();
+
     return this.http.get(`${this.baseUrl}/control`)
   }
 
   getControlsByUserId(id): Promise<any[]> {
-    let token = this.authService.getToken();
+
     return this.http.get<any[]>(`${this.baseUrl}/control/${id}`).toPromise();
   }
 
@@ -42,6 +42,10 @@ export class ControlsService {
     let token = this.authService.getToken();
     return this.http.delete(`${this.baseUrl}/control/${id}`);
   }
+
+
+
+
 
   /* updateControl(id:, updatedControl: Control): Observable<Control> {
     return this.http.put(`${this.baseUrl}/control/${id}`, updatedControl);

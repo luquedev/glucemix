@@ -42,6 +42,8 @@ export class ControlsComponent implements OnInit {
       err => console.log(err)
     );
 
+
+    // MARIO, aquí es donde he conseguido que coja el id de la cookie pero no se si está bien hecho.
     this.controlsService.getControlsByUserId(this.cookie)
       .then(result => { this.userControlId = result; console.log(result) })
       .catch(err => console.log(err));
