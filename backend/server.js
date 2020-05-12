@@ -62,11 +62,11 @@ server.put('/updateUser', [
 ], userController.updateSingleUser);
 
 // Eliminar usuario por id ( DELETE )
-server.delete('/deleteUser/:id', userController.deleteUserById);
+server.delete('/user/:id', userController.deleteUserById);
 
 // Login user -> Compruebo usuario y contraseña.
 server.post('/userLogin', [
-    check('username').isString(),
+    check('email').isString(),
     check('password').isString()
 ], userController.userLogin);
 
@@ -95,7 +95,7 @@ server.get('/control/:id', glucoseController.getControlsByUserId);
 server.get('/control/:username', glucoseController.getControlsByUserName);
 
 // Update control
-server.put('/control/', [
+server.put('/control/:id', [
     check('date'),
     check('time'),
     check('mgdl').isNumeric(),

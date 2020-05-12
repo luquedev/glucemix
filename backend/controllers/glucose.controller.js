@@ -9,8 +9,9 @@ exports.newControl = async(req, res) => {
         const date = req.body.date;
         const time = req.body.time;
         const mgdl = req.body.mgdl;
+        const fk_user = req.body.fk_user;
         try {
-            const result = await glucoseModel.newControl(date, time, mgdl);
+            const result = await glucoseModel.newControl(date, time, mgdl, fk_user);
             res.send({ "Mensaje": "Control creado correctamente" });
         } catch (error) {
             res.send("Error en creación de nuevo usuario" + error);

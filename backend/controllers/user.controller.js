@@ -3,6 +3,7 @@ const secret = require('../config/secrets');
 const { validationResult } = require('express-validator'); // para poder validar el body
 const bcrypt = require('bcryptjs'); // hasheo de password para seguridad
 const jwt = require('jsonwebtoken'); // para crear el token y mantener sesión abierta
+const moment = require('moment');
 
 // CRRUD
 // Create new User -> lo exporto
@@ -126,31 +127,37 @@ exports.deleteUserById = async(req, res) => {
     }
 }
 
+
+//===============================================CREATE USER TOKEN===================================
+
+const createToken = (user) => {
+    const obj = {
+        id: user.id,
+        expiredAt: moment().add(180, "minutes").unix()
+    };
+    console.log(user);
+    return jwt.sign(obj, process.env.SECRET_KEY);
+};
+
+
 // LOGIN USUARIO -> creo exportando
 exports.userLogin = async(req, res) => {
-    const userName = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     const errors = validationResult(req);
+    console.log(email, password);
     console.log(errors); // para que me muestre el error por consola
     try {
         if (!errors.isEmpty()) {
             return res.status(422).send.json({ "error": "El body está mal formado", "explicación": errors });
         } else {
-            const user = await userModel.userLoginModel(userName);
+            const user = await userModel.userLoginModel(email);
+            console.log(user);
             if (user.length > 0) {
                 const coincide = bcrypt.compareSync(password, user[0].password);
                 console.log(coincide);
                 if (coincide) {
-                    jwt.sign({ "userId": user.id },
-                        secret.jwt_clave, (error, token) => {
-                            if (error) {
-                                res.send("Error token " + error);
-                            } else {
-                                res.cookie("glucemix_cookie", token);
-                                res.cookie("userId", user[0].id);
-                                res.send({ "mensaje": "Contraseña correcta, autorización ok", "glucemix_token": token, "userId": user[0].id });
-                            };
-                        });
+                    res.status(200).json({ "message": "Login ok", "token": createToken(user) });
                 } else {
                     res.status(400).send({ "error": "Contraseña no coincide" });
                 };

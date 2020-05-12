@@ -22,6 +22,7 @@ import { RegisterComponent } from './components/userAuth/register/register.compo
 import { ProfileComponent } from './components/userAuth/profile/profile.component';
 import { LoginComponent } from './components/userAuth/login/login.component';
 import { Page404Component } from './components/page404/page404.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { Page404Component } from './components/page404/page404.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

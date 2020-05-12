@@ -13,6 +13,7 @@ export class ControlsComponent implements OnInit {
 
 
   controls: any = [];
+
   userControlId: any[];
 
   userNameParam: string;
@@ -36,16 +37,28 @@ export class ControlsComponent implements OnInit {
 
     this.controlsService.getControls().subscribe(
       res => {
-        console.log(res);
+        // console.log(res); // Muestra por consola el array de todos los arrays de controles.
         this.controls = res;
       },
       err => console.log(err)
     );
 
-
     // MARIO, aquí es donde he conseguido que coja el id de la cookie pero no se si está bien hecho.
     this.controlsService.getControlsByUserId(this.cookie)
       .then(result => { this.userControlId = result; console.log(result) })
       .catch(err => console.log(err));
+
+
+
+    // this.controlsService.deleteControl(id)
+
   }
+
+
+
+
+
+
+
+
 }

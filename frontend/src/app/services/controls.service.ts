@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Control } from '../models/control';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -15,13 +16,14 @@ export class ControlsService {
     private http: HttpClient,
     private authService: AuthService
 
-  ) { this.baseUrl = "http://localhost:3000" }
+  ) {
+
+    let params = JSON.stringify(ControlsService);
+    let headers = new HttpHeaders().set('Content-Type', 'app/json');
 
 
-  headers: HttpHeaders = new HttpHeaders({
-    "Content-Type": "application/json",
-    Authorization: this.authService.getToken()
-  });
+    this.baseUrl = "http://localhost:3000"
+  }
 
   getControls() {
 
@@ -34,12 +36,12 @@ export class ControlsService {
   }
 
   saveControl(control: Control) {
-    let token = this.authService.getToken();
+
     return this.http.post(`${this.baseUrl}/control`, control);
   }
 
-  deleteControl(id) {
-    let token = this.authService.getToken();
+  deleteControl(id): Observable<any> {
+
     return this.http.delete(`${this.baseUrl}/control/${id}`);
   }
 
